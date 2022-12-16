@@ -61,7 +61,7 @@ pacman -S unzip
 
 **Clone the repository:**
 ```sh
-git clone --recursive https://github.com/VDavid003/sm64-port-android-base
+git clone --recursive https://github.com/robertkirkman/sm64ex-coop-android-base.git
 ```
 
 **Copy in your baserom:**
@@ -93,13 +93,13 @@ gradlew.bat assembleDebug
 
 **Clone the repository:**
 ```sh
-git clone --recursive https://github.com/VDavid003/sm64-port-android-base
+git clone --recursive https://github.com/robertkirkman/sm64ex-coop-android-base.git
 ```
 
 **Create the build image:**
 ```sh
 # navigate into newly cloned repo
-cd sm64-port-android-base
+cd sm64ex-coop-android-base
 # build the docker image
 docker build . -t sm64_android
 ```
