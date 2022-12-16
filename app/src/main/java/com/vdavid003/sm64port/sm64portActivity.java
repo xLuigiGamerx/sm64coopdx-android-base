@@ -4,8 +4,8 @@ import org.libsdl.app.SDLActivity;
 
 public class sm64portActivity extends SDLActivity
 {
-    @Override
-    protected String getMainFunction() {
-        return "main";
-    }
+    // @Override
+    // protected String getMainFunction() {
+    //     return "main";
+    // }
 }

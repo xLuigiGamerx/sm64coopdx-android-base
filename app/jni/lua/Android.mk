@@ -37,4 +37,4 @@ LUA_SRC_FILES := src/lapi.c \
 					src/lvm.c \
 					src/lzio.c
 LOCAL_SRC_FILES := $(addprefix $(LOCAL_PATH)/,$(LUA_SRC_FILES))
-include $(BUILD_SHARED_LIBRARY)
+include $(BUILD_STATIC_LIBRARY)
