@@ -34,7 +34,7 @@ cp /path/to/your/baserom.z64 ./app/jni/src/baserom.us.z64
 ```sh
 # if you have more cores available, you can increase the --jobs parameter
 cd app/jni/src
-make --jobs 4
+DISCORD_SDK=0 TOUCH_CONTROLS=1 make -j9
 cd ../../..
 ```
 
@@ -79,7 +79,7 @@ cp /path/to/your/baserom.z64 ./app/jni/src/baserom.us.z64
 ```sh
 # if you have more cores available, you can increase the --jobs parameter
 cd app/jni/src
-make --jobs 4
+DISCORD_SDK=0 TOUCH_CONTROLS=1 make -j9
 cd ../../..
 ```
 
@@ -117,7 +117,7 @@ docker run --rm -v $(pwd):/sm64 sm64_android sh -c "ln -nsf /SDL2-2.0.12/include
 **Perform native build:**
 ```sh
 # if you have more cores available, you can increase the --jobs parameter
-docker run --rm -v $(pwd):/sm64 sm64_android sh -c "cd /sm64/app/jni/src && make --jobs 4"
+docker run --rm -v $(pwd):/sm64 sm64_android sh -c "cd /sm64/app/jni/src && DISCORD_SDK=0 TOUCH_CONTROLS=1 make -j9"
 ```
 
 **Perform Android build:**
