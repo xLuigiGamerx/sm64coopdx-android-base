@@ -1,5 +1,5 @@
-# sm64ex-coop Android Port
-This is a port of the sm64ex-coop multiplayer mod for Super Mario 64 to Android using SDL2 with OpenGL ES 2.0.
+# `sm64ex-coop` Android Port
+This is a port of the `sm64ex-coop` multiplayer mod for Super Mario 64 to Android using SDL2 with OpenGL ES 2.0.
 
 # Build instructions
 
