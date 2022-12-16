@@ -1,17 +1,10 @@
-# Super Mario 64 Android Port
-This is a port of the reconstructed Super Mario 64 source code to Android using SDL2 with OpenGL ES 2.0.
-
-It has cross-platform Touch Controls, Audio works, it saves the game to the app's internal storage and you can play it with an external keyboard or controller as well (tested on PS3 controller).
-
-# Branches:
-* `master`: Vanilla SM64 port, barely any modifications.
-* `sm64ex`: Master branch of sm64ex.
-* `sm64ex_nightly`: Nightly branch of sm64ex. Use this one for Render96/SGI models!
+# sm64ex-coop Android Port
+This is a port of the sm64ex-coop multiplayer mod for Super Mario 64 to Android using SDL2 with OpenGL ES 2.0.
 
 # Build instructions
 
 ## Android
-Follow instructions [here](https://github.com/VDavid003/sm64-port-android/tree/master)!
+Follow instructions [here](https://github.com/robertkirkman/sm64ex-coop/blob/android/README_android.md)!
 
 (please note that building on Android is currently incomplete)
 
@@ -23,8 +16,8 @@ This depends on your distro, but if you can build the PC port and you have Andro
 
 **Clone the repository:**
 ```sh
-git clone --recursive https://github.com/VDavid003/sm64-port-android-base
-cd sm64-port-android-base
+git clone --recursive https://github.com/robertkirkman/sm64ex-coop-android-base.git
+cd sm64ex-coop-android-base
 ```
 
 **Copy in your baserom:**
