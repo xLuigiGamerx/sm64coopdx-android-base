@@ -1,5 +1,3 @@
-app/jni/SDL/include
-app/jni/SDL/src
 .gradle
 app/build
 app/.externalNativeBuild

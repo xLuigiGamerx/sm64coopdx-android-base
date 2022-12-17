@@ -35,8 +35,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    lint {
-        abortOnError false
+    applicationVariants.all { variant ->
+        tasks["merge${variant.name.capitalize()}Assets"]
+            .dependsOn("externalNativeBuild${variant.name.capitalize()}")
     }
     namespace 'com.owokitty.sm64excoop'
     if (!project.hasProperty('EXCLUDE_NATIVE_LIBS')) {
@@ -52,6 +53,9 @@ android {
             // }
         }
        
+    }
+    lintOptions {
+        abortOnError false
     }
 
     if (buildAsLibrary) {
