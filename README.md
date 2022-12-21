@@ -139,6 +139,8 @@ cd ../../..
 
 ![image](https://user-images.githubusercontent.com/31490854/208705298-f5e6888e-4d33-42af-acb4-9c217dd89992.png)
 
+> For more information and follow-up steps for what to do on-device after obtaining the `.apk`, check out the [submodule repository READMEs](https://github.com/robertkirkman/sm64ex-coop).
+
 ## Arch Linux
 
 > Assumes general Arch Linux experience, [`sudo`](https://wiki.archlinux.org/title/sudo), an [AUR helper](https://wiki.archlinux.org/title/AUR_helpers), and [`multilib`](https://wiki.archlinux.org/title/Official_repositories#multilib) enabled.
