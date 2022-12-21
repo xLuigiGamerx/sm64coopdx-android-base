@@ -47,9 +47,9 @@ pacman -Syuu --noconfirm
 pacman -S --noconfirm unzip make git mingw-w64-x86_64-gcc python3
 ```
 
-8. Next, run these commands to create a new folder (`C:\g\`) and change working directory to it (**IMPORTANT**), clone the repository, and navigate to the `sm64ex-coop-android-base/app/jni/src` directory:
+8. Next, run these commands to create a new folder (`C:\g\`) and change working directory to it (**IMPORTANT: it must be in this exact folder**), clone the repository, and navigate to the `sm64ex-coop-android-base/app/jni/src` directory:
 ```sh
-cd /
+cd /c
 mkdir g
 cd g
 git clone --recursive https://github.com/robertkirkman/sm64ex-coop-android-base.git
