@@ -11,6 +11,8 @@ To compile fully on Android, including Java and SDL2 components, follow the inst
 
 ## Windows
 
+> You will need at least 12 GB of free space on your `C:\` drive to install all the dependencies needed here
+
 1. Go to the [MSYS2 Releases page](https://github.com/msys2/msys2-installer/releases), click "Assets" under the newest release, and click the link that looks like "`msys2-x86_64-XXXXXXXX.exe`":
 
 ![image](https://user-images.githubusercontent.com/31490854/208398261-b2ca155a-750c-4739-a5e0-17439e501f4d.png)
