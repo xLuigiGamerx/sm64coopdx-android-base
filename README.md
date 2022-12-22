@@ -149,7 +149,7 @@ cd ../../..
 
 **Install dependencies:**
 ```sh
-yay -S base-devel jdk-openjdk android-sdk-cmdline-tools-latest android-sdk-build-tools android-sdk-platform-tools android-platform python sdl2 glew
+yay -S base-devel jdk17-openjdk android-sdk-cmdline-tools-latest android-sdk-build-tools android-sdk-platform-tools android-platform python sdl2 glew
 ```
 
 **Source `/etc/profile` to set `ANDROID_SDK_ROOT`:**
@@ -157,10 +157,10 @@ yay -S base-devel jdk-openjdk android-sdk-cmdline-tools-latest android-sdk-build
 source /etc/profile
 ```
 
-**Set default JDK to the newest one you see here:**
+**Set default JDK to `java-17-openjdk`:**
 ```sh
 sudo archlinux-java status
-sudo archlinux-java set java-19-openjdk
+sudo archlinux-java set java-17-openjdk
 ```
 
 **Make Android SDK installation path writable and accept all SDK licenses:**
