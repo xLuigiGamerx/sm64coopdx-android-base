@@ -4,3 +4,4 @@ app/.externalNativeBuild
 app/.cxx
 local.properties
 .idea
+.vscode

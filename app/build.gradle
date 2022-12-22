@@ -17,6 +17,10 @@ android {
         targetSdkVersion 33
         versionCode 1
         versionName "1.0"
+        ndk {
+            moduleName = "app"
+            ldLibs "log"
+        }
         externalNativeBuild {
             ndkBuild {
                 arguments "-j9"
