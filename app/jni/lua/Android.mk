@@ -1,7 +1,7 @@
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS) 
-LUA_VERSION := 5.3.6
-LOCAL_CFLAGS := -D"l_getlocaledecpoint()='.'" -DLUA_ANSI
+LUA_VERSION := 5.3.5
+LOCAL_CFLAGS := -D"l_getlocaledecpoint()='.'" -DLUA_ANSI -DLUA_COMPAT_5_2
 LOCAL_MODULE := lua$(LUA_VERSION) 
 LUA_SRC_FILES := src/lapi.c \
 					src/lauxlib.c \

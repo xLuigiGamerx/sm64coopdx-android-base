@@ -19,7 +19,7 @@ by Roberto Ierusalimschy, Luiz Henrique de Figueiredo, Waldemar Celes
 
 <P>
 <SMALL>
-Copyright &copy; 2015&ndash;2020 Lua.org, PUC-Rio.
+Copyright &copy; 2015&ndash;2018 Lua.org, PUC-Rio.
 Freely available under the terms of the
 <a href="http://www.lua.org/license.html">Lua license</a>.
 </SMALL>
@@ -512,7 +512,7 @@ Behavior similar to the addition operation.
 </li>
 
 <li><b><code>__band</code>: </b>
-the bitwise AND (<code>&</code>) operation.
+the bitwise AND (<code>&amp;</code>) operation.
 Behavior similar to the addition operation,
 except that Lua will try a metamethod
 if any operand is neither an integer
@@ -535,12 +535,12 @@ Behavior similar to the bitwise AND operation.
 </li>
 
 <li><b><code>__shl</code>: </b>
-the bitwise left shift (<code><<</code>) operation.
+the bitwise left shift (<code>&lt;&lt;</code>) operation.
 Behavior similar to the bitwise AND operation.
 </li>
 
 <li><b><code>__shr</code>: </b>
-the bitwise right shift (<code>>></code>) operation.
+the bitwise right shift (<code>&gt;&gt;</code>) operation.
 Behavior similar to the bitwise AND operation.
 </li>
 
@@ -576,7 +576,7 @@ The result of the call is always converted to a boolean.
 </li>
 
 <li><b><code>__lt</code>: </b>
-the less than (<code><</code>) operation.
+the less than (<code>&lt;</code>) operation.
 Behavior similar to the addition operation,
 except that Lua will try a metamethod only when the values
 being compared are neither both numbers nor both strings.
@@ -584,14 +584,14 @@ The result of the call is always converted to a boolean.
 </li>
 
 <li><b><code>__le</code>: </b>
-the less equal (<code><=</code>) operation.
+the less equal (<code>&lt;=</code>) operation.
 Unlike other operations,
 the less-equal operation can use two different events.
 First, Lua looks for the <code>__le</code> metamethod in both operands,
 like in the less than operation.
 If it cannot find such a metamethod,
 then it will try the <code>__lt</code> metamethod,
-assuming that <code>a <= b</code> is equivalent to <code>not (b < a)</code>.
+assuming that <code>a &lt;= b</code> is equivalent to <code>not (b &lt; a)</code>.
 As with the other comparison operators,
 the result is always a boolean.
 (This use of the <code>__lt</code> event can be removed in future versions;
@@ -1092,8 +1092,8 @@ The following strings denote other tokens:
 
 <pre>
      +     -     *     /     %     ^     #
-     &     ~     |     <<    >>    //
-     ==    ~=    <=    >=    <     >     =
+     &amp;     ~     |     &lt;&lt;    &gt;&gt;    //
+     ==    ~=    &lt;=    &gt;=    &lt;     &gt;     =
      (     )     {     }     [     ]     ::
      ;     :     ,     .     ..    ...
 </pre>
@@ -1616,7 +1616,7 @@ is equivalent to the code:
        <em>var</em> = <em>var</em> - <em>step</em>
        while true do
          <em>var</em> = <em>var</em> + <em>step</em>
-         if (<em>step</em> >= 0 and <em>var</em> > <em>limit</em>) or (<em>step</em> < 0 and <em>var</em> < <em>limit</em>) then
+         if (<em>step</em> &gt;= 0 and <em>var</em> &gt; <em>limit</em>) or (<em>step</em> &lt; 0 and <em>var</em> &lt; <em>limit</em>) then
            break
          end
          local v = <em>var</em>
@@ -1909,11 +1909,11 @@ that is equal modulo <em>2<sup>64</sup></em> to the mathematical result.)
 Lua supports the following bitwise operators:
 
 <ul>
-<li><b><code>&</code>: </b>bitwise AND</li>
+<li><b><code>&amp;</code>: </b>bitwise AND</li>
 <li><b><code>&#124;</code>: </b>bitwise OR</li>
 <li><b><code>~</code>: </b>bitwise exclusive OR</li>
-<li><b><code>>></code>: </b>right shift</li>
-<li><b><code><<</code>: </b>left shift</li>
+<li><b><code>&gt;&gt;</code>: </b>right shift</li>
+<li><b><code>&lt;&lt;</code>: </b>left shift</li>
 <li><b><code>~</code>: </b>unary bitwise NOT</li>
 </ul>
 
@@ -2008,10 +2008,10 @@ Lua supports the following relational operators:
 <ul>
 <li><b><code>==</code>: </b>equality</li>
 <li><b><code>~=</code>: </b>inequality</li>
-<li><b><code><</code>: </b>less than</li>
-<li><b><code>></code>: </b>greater than</li>
-<li><b><code><=</code>: </b>less or equal</li>
-<li><b><code>>=</code>: </b>greater or equal</li>
+<li><b><code>&lt;</code>: </b>less than</li>
+<li><b><code>&gt;</code>: </b>greater than</li>
+<li><b><code>&lt;=</code>: </b>less or equal</li>
+<li><b><code>&gt;=</code>: </b>greater or equal</li>
 </ul><p>
 These operators always result in <b>false</b> or <b>true</b>.
 
@@ -2065,8 +2065,8 @@ Otherwise, if both arguments are strings,
 then their values are compared according to the current locale.
 Otherwise, Lua tries to call the "lt" or the "le"
 metamethod (see <a href="#2.4">&sect;2.4</a>).
-A comparison <code>a > b</code> is translated to <code>b < a</code>
-and <code>a >= b</code> is translated to <code>b <= a</code>.
+A comparison <code>a &gt; b</code> is translated to <code>b &lt; a</code>
+and <code>a &gt;= b</code> is translated to <code>b &lt;= a</code>.
 
 
 <p>
@@ -2100,17 +2100,17 @@ the second operand is evaluated only if necessary.
 Here are some examples:
 
 <pre>
-     10 or 20            --> 10
-     10 or error()       --> 10
-     nil or "a"          --> "a"
-     nil and 10          --> nil
-     false and error()   --> false
-     false and nil       --> false
-     false or nil        --> nil
-     10 and 20           --> 20
+     10 or 20            --&gt; 10
+     10 or error()       --&gt; 10
+     nil or "a"          --&gt; "a"
+     nil and 10          --&gt; nil
+     false and error()   --&gt; false
+     false and nil       --&gt; false
+     false or nil        --&gt; nil
+     10 and 20           --&gt; 20
 </pre><p>
 (In this manual,
-<code>--></code> indicates the result of the preceding expression.)
+<code>--&gt;</code> indicates the result of the preceding expression.)
 
 
 
@@ -2201,11 +2201,11 @@ from lower to higher priority:
 <pre>
      or
      and
-     <     >     <=    >=    ~=    ==
+     &lt;     &gt;     &lt;=    &gt;=    ~=    ==
      |
      ~
-     &
-     <<    >>
+     &amp;
+     &lt;&lt;    &gt;&gt;
      ..
      +     -
      *     /     //    %
@@ -2476,10 +2476,10 @@ to the vararg expression:
      f(r(), 10)       a=1, b=10
      f(r())           a=1, b=2
      
-     g(3)             a=3, b=nil, ... -->  (nothing)
-     g(3, 4)          a=3, b=4,   ... -->  (nothing)
-     g(3, 4, 5, 8)    a=3, b=4,   ... -->  5  8
-     g(5, r())        a=5, b=1,   ... -->  2  3
+     g(3)             a=3, b=nil, ... --&gt;  (nothing)
+     g(3, 4)          a=3, b=4,   ... --&gt;  (nothing)
+     g(3, 4, 5, 8)    a=3, b=4,   ... --&gt;  5  8
+     g(5, r())        a=5, b=1,   ... --&gt;  2  3
 </pre>
 
 <p>
@@ -2530,15 +2530,15 @@ Consider the following example:
      x = 10                -- global variable
      do                    -- new block
        local x = x         -- new 'x', with value 10
-       print(x)            --> 10
+       print(x)            --&gt; 10
        x = x+1
        do                  -- another block
          local x = x+1     -- another 'x'
-         print(x)          --> 12
+         print(x)          --&gt; 12
        end
-       print(x)            --> 11
+       print(x)            --&gt; 11
      end
-     print(x)              --> 10  (the global one)
+     print(x)              --&gt; 10  (the global one)
 </pre>
 
 <p>
@@ -3129,7 +3129,7 @@ the allocator must behave like <code>realloc</code>.
 The allocator returns <code>NULL</code>
 if and only if it cannot fulfill the request.
 Lua assumes that the allocator never fails when
-<code>osize >= nsize</code>.
+<code>osize &gt;= nsize</code>.
 
 
 <p>
@@ -3187,11 +3187,11 @@ The value of <code>op</code> must be one of the following constants:
 <li><b><a name="pdf-LUA_OPPOW"><code>LUA_OPPOW</code></a>: </b> performs exponentiation (<code>^</code>)</li>
 <li><b><a name="pdf-LUA_OPUNM"><code>LUA_OPUNM</code></a>: </b> performs mathematical negation (unary <code>-</code>)</li>
 <li><b><a name="pdf-LUA_OPBNOT"><code>LUA_OPBNOT</code></a>: </b> performs bitwise NOT (<code>~</code>)</li>
-<li><b><a name="pdf-LUA_OPBAND"><code>LUA_OPBAND</code></a>: </b> performs bitwise AND (<code>&</code>)</li>
+<li><b><a name="pdf-LUA_OPBAND"><code>LUA_OPBAND</code></a>: </b> performs bitwise AND (<code>&amp;</code>)</li>
 <li><b><a name="pdf-LUA_OPBOR"><code>LUA_OPBOR</code></a>: </b> performs bitwise OR (<code>|</code>)</li>
 <li><b><a name="pdf-LUA_OPBXOR"><code>LUA_OPBXOR</code></a>: </b> performs bitwise exclusive OR (<code>~</code>)</li>
-<li><b><a name="pdf-LUA_OPSHL"><code>LUA_OPSHL</code></a>: </b> performs left shift (<code><<</code>)</li>
-<li><b><a name="pdf-LUA_OPSHR"><code>LUA_OPSHR</code></a>: </b> performs right shift (<code>>></code>)</li>
+<li><b><a name="pdf-LUA_OPSHL"><code>LUA_OPSHL</code></a>: </b> performs left shift (<code>&lt;&lt;</code>)</li>
+<li><b><a name="pdf-LUA_OPSHR"><code>LUA_OPSHR</code></a>: </b> performs right shift (<code>&gt;&gt;</code>)</li>
 
 </ul>
 
@@ -3321,7 +3321,7 @@ of numeric arguments and returns their average and their sum:
        int n = lua_gettop(L);    /* number of arguments */
        lua_Number sum = 0.0;
        int i;
-       for (i = 1; i <= n; i++) {
+       for (i = 1; i &lt;= n; i++) {
          if (!lua_isnumber(L, i)) {
            lua_pushliteral(L, "incorrect argument");
            lua_error(L);
@@ -3395,8 +3395,8 @@ The value of <code>op</code> must be one of the following constants:
 <ul>
 
 <li><b><a name="pdf-LUA_OPEQ"><code>LUA_OPEQ</code></a>: </b> compares for equality (<code>==</code>)</li>
-<li><b><a name="pdf-LUA_OPLT"><code>LUA_OPLT</code></a>: </b> compares for less than (<code><</code>)</li>
-<li><b><a name="pdf-LUA_OPLE"><code>LUA_OPLE</code></a>: </b> compares for less or equal (<code><=</code>)</li>
+<li><b><a name="pdf-LUA_OPLT"><code>LUA_OPLT</code></a>: </b> compares for less than (<code>&lt;</code>)</li>
+<li><b><a name="pdf-LUA_OPLE"><code>LUA_OPLE</code></a>: </b> compares for less or equal (<code>&lt;=</code>)</li>
 
 </ul>
 
@@ -5580,7 +5580,7 @@ given as argument to a hook (see <a href="#lua_Hook"><code>lua_Hook</code></a>).
 
 <p>
 To get information about a function, you push it onto the stack
-and start the <code>what</code> string with the character '<code>></code>'.
+and start the <code>what</code> string with the character '<code>&gt;</code>'.
 (In that case,
 <code>lua_getinfo</code> pops the function from the top of the stack.)
 For instance, to know in which line a function <code>f</code> was defined,
@@ -5589,7 +5589,7 @@ you can write the following code:
 <pre>
      lua_Debug ar;
      lua_getglobal(L, "f");  /* get global 'f' */
-     lua_getinfo(L, ">S", &ar);
+     lua_getinfo(L, "&gt;S", &amp;ar);
      printf("%d\n", ar.linedefined);
 </pre>
 
@@ -6105,7 +6105,7 @@ Its pattern of use is as follows:
 
 <li>First declare a variable <code>b</code> of type <a href="#luaL_Buffer"><code>luaL_Buffer</code></a>.</li>
 
-<li>Then initialize it with a call <code>luaL_buffinit(L, &b)</code>.</li>
+<li>Then initialize it with a call <code>luaL_buffinit(L, &amp;b)</code>.</li>
 
 <li>
 Then add string pieces to the buffer calling any of
@@ -6113,7 +6113,7 @@ the <code>luaL_add*</code> functions.
 </li>
 
 <li>
-Finish by calling <code>luaL_pushresult(&b)</code>.
+Finish by calling <code>luaL_pushresult(&amp;b)</code>.
 This call leaves the final string on the top of the stack.
 </li>
 
@@ -6128,12 +6128,12 @@ you can use the buffer like this:
 <li>First declare a variable <code>b</code> of type <a href="#luaL_Buffer"><code>luaL_Buffer</code></a>.</li>
 
 <li>Then initialize it and preallocate a space of
-size <code>sz</code> with a call <code>luaL_buffinitsize(L, &b, sz)</code>.</li>
+size <code>sz</code> with a call <code>luaL_buffinitsize(L, &amp;b, sz)</code>.</li>
 
 <li>Then copy the string into that space.</li>
 
 <li>
-Finish by calling <code>luaL_pushresultsize(&b, sz)</code>,
+Finish by calling <code>luaL_pushresultsize(&amp;b, sz)</code>,
 where <code>sz</code> is the total size of the resulting string
 copied into that space.
 </li>
@@ -8438,25 +8438,25 @@ Here are some examples:
 
 <pre>
      x = string.gsub("hello world", "(%w+)", "%1 %1")
-     --> x="hello hello world world"
+     --&gt; x="hello hello world world"
      
      x = string.gsub("hello world", "%w+", "%0 %0", 1)
-     --> x="hello hello world"
+     --&gt; x="hello hello world"
      
      x = string.gsub("hello world from Lua", "(%w+)%s*(%w+)", "%2 %1")
-     --> x="world hello Lua from"
+     --&gt; x="world hello Lua from"
      
      x = string.gsub("home = $HOME, user = $USER", "%$(%w+)", os.getenv)
-     --> x="home = /home/roberto, user = roberto"
+     --&gt; x="home = /home/roberto, user = roberto"
      
      x = string.gsub("4+5 = $return 4+5$", "%$(.-)%$", function (s)
            return load(s)()
          end)
-     --> x="4+5 = 9"
+     --&gt; x="4+5 = 9"
      
      local t = {name="lua", version="5.3"}
      x = string.gsub("$name-$version.tar.gz", "%$(%w+)", t)
-     --> x="lua-5.3.tar.gz"
+     --&gt; x="lua-5.3.tar.gz"
 </pre>
 
 
@@ -8825,8 +8825,8 @@ A format string is a sequence of conversion options.
 The conversion options are as follows:
 
 <ul>
-<li><b><code><</code>: </b>sets little endian</li>
-<li><b><code>></code>: </b>sets big endian</li>
+<li><b><code>&lt;</code>: </b>sets little endian</li>
+<li><b><code>&gt;</code>: </b>sets big endian</li>
 <li><b><code>=</code>: </b>sets native endian</li>
 <li><b><code>![<em>n</em>]</code>: </b>sets maximum alignment to <code>n</code>
 (default is native alignment)</li>
@@ -8859,7 +8859,7 @@ according to option <code>op</code>
 </ul><p>
 (A "<code>[<em>n</em>]</code>" means an optional integral numeral.)
 Except for padding, spaces, and configurations
-(options "<code>xX <=>!</code>"),
+(options "<code>xX &lt;=&gt;!</code>"),
 each option corresponds to an argument (in <a href="#pdf-string.pack"><code>string.pack</code></a>)
 or a result (in <a href="#pdf-string.unpack"><code>string.unpack</code></a>).
 
@@ -9120,9 +9120,9 @@ then it must be a function that receives two list elements
 and returns true when the first element must come
 before the second in the final order
 (so that, after the sort,
-<code>i < j</code> implies <code>not comp(list[j],list[i])</code>).
+<code>i &lt; j</code> implies <code>not comp(list[j],list[i])</code>).
 If <code>comp</code> is not given,
-then the standard Lua operator <code><</code> is used instead.
+then the standard Lua operator <code>&lt;</code> is used instead.
 
 
 <p>
@@ -9314,7 +9314,7 @@ The default for <code>base</code> is <em>e</em>
 
 <p>
 Returns the argument with the maximum value,
-according to the Lua operator <code><</code>. (integer/float)
+according to the Lua operator <code>&lt;</code>. (integer/float)
 
 
 
@@ -9332,7 +9332,7 @@ An integer with the maximum value for an integer.
 
 <p>
 Returns the argument with the minimum value,
-according to the Lua operator <code><</code>. (integer/float)
+according to the Lua operator <code>&lt;</code>. (integer/float)
 
 
 
@@ -10953,8 +10953,8 @@ and LiteralString, see <a href="#3.1">&sect;3.1</a>.)
 	fieldsep ::= &lsquo;<b>,</b>&rsquo; | &lsquo;<b>;</b>&rsquo;
 
 	binop ::=  &lsquo;<b>+</b>&rsquo; | &lsquo;<b>-</b>&rsquo; | &lsquo;<b>*</b>&rsquo; | &lsquo;<b>/</b>&rsquo; | &lsquo;<b>//</b>&rsquo; | &lsquo;<b>^</b>&rsquo; | &lsquo;<b>%</b>&rsquo; | 
-		 &lsquo;<b>&</b>&rsquo; | &lsquo;<b>~</b>&rsquo; | &lsquo;<b>|</b>&rsquo; | &lsquo;<b>>></b>&rsquo; | &lsquo;<b><<</b>&rsquo; | &lsquo;<b>..</b>&rsquo; | 
-		 &lsquo;<b><</b>&rsquo; | &lsquo;<b><=</b>&rsquo; | &lsquo;<b>></b>&rsquo; | &lsquo;<b>>=</b>&rsquo; | &lsquo;<b>==</b>&rsquo; | &lsquo;<b>~=</b>&rsquo; | 
+		 &lsquo;<b>&amp;</b>&rsquo; | &lsquo;<b>~</b>&rsquo; | &lsquo;<b>|</b>&rsquo; | &lsquo;<b>&gt;&gt;</b>&rsquo; | &lsquo;<b>&lt;&lt;</b>&rsquo; | &lsquo;<b>..</b>&rsquo; | 
+		 &lsquo;<b>&lt;</b>&rsquo; | &lsquo;<b>&lt;=</b>&rsquo; | &lsquo;<b>&gt;</b>&rsquo; | &lsquo;<b>&gt;=</b>&rsquo; | &lsquo;<b>==</b>&rsquo; | &lsquo;<b>~=</b>&rsquo; | 
 		 <b>and</b> | <b>or</b>
 
 	unop ::= &lsquo;<b>-</b>&rsquo; | <b>not</b> | &lsquo;<b>#</b>&rsquo; | &lsquo;<b>~</b>&rsquo;
@@ -10972,10 +10972,10 @@ and LiteralString, see <a href="#3.1">&sect;3.1</a>.)
 
 <P CLASS="footer">
 Last update:
-Tue Jul 14 10:32:39 UTC 2020
+Tue Jun 26 13:16:37 -03 2018
 </P>
 <!--
-Last change: revised for Lua 5.3.6
+Last change: revised for Lua 5.3.5
 -->
 
 </body></html>

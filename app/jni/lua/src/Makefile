@@ -19,7 +19,7 @@ SYSCFLAGS=
 SYSLDFLAGS=
 SYSLIBS=
 
-MYCFLAGS= -fPIC
+MYCFLAGS=
 MYLDFLAGS=
 MYLIBS=
 MYOBJS=
@@ -102,7 +102,7 @@ c89:
 
 
 freebsd:
-	$(MAKE) $(ALL) SYSCFLAGS="-DLUA_USE_LINUX -I/usr/include/edit" SYSLIBS="-Wl,-E -ledit" CC="cc"
+	$(MAKE) $(ALL) SYSCFLAGS="-DLUA_USE_LINUX -DLUA_USE_READLINE -I/usr/include/edit" SYSLIBS="-Wl,-E -ledit" CC="cc"
 
 generic: $(ALL)
 
