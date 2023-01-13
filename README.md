@@ -79,65 +79,59 @@ cd sm64ex-coop-android-base/app/jni/src
 HEADLESS=1 DISCORD_SDK=0 TOUCH_CONTROLS=1 make
 ```
 
-13. When it completes, run these commands to navigate up three directories in MSYS2 to the `sm64ex-coop-android-base` folder, then copy SDL2 headers to a path necessary for the Android build:
-```sh
-cd ../../..
-./getSDL.sh
-```
-
-14. Go to [the Android Studio website](https://developer.android.com/studio) and click "Download Android Studio":
+13. Go to [the Android Studio website](https://developer.android.com/studio) and click "Download Android Studio":
 
 ![image](https://user-images.githubusercontent.com/31490854/208675391-f959541f-d14e-4f55-a2bc-52d8824f0894.png)
 
-15. Check the box to agree to the terms and conditions, then click the download link:
+14. Check the box to agree to the terms and conditions, then click the download link:
 
 ![image](https://user-images.githubusercontent.com/31490854/208675761-8501e900-fc87-4af5-9a17-13b726392b45.png)
 
-16. Repeat step 2 but for the Android Studio installer, then click "Next" 3 times and "Install" once, and wait for the installation to complete:
+15. Repeat step 2 but for the Android Studio installer, then click "Next" 3 times and "Install" once, and wait for the installation to complete:
 
 ![image](https://user-images.githubusercontent.com/31490854/208676783-eeb4e9a2-6c68-4d57-80b0-7ce09b26dd66.png)
 
-17. Click "Next", then "Finish", then click "OK" when this box appears:
+16. Click "Next", then "Finish", then click "OK" when this box appears:
 
 ![image](https://user-images.githubusercontent.com/31490854/208677005-7a4f09bd-638e-40e4-b2a4-4eba3f69757a.png)
 
-18. When this window appears, click "Don't send", then click "Next" four times:
+17. When this window appears, click "Don't send", then click "Next" four times:
 
 ![image](https://user-images.githubusercontent.com/31490854/208677271-f5a88f53-a057-4823-8280-a46b00755874.png)
 
-19. When you see this, click "Accept", then click either one of the "Intel" buttons to the left and click "Accept" again, then click "Finish" and wait for the installation to complete:
+18. When you see this, click "Accept", then click either one of the "Intel" buttons to the left and click "Accept" again, then click "Finish" and wait for the installation to complete:
 
 ![image](https://user-images.githubusercontent.com/31490854/208677663-fb253a85-ea3e-4a62-9ec3-01f3cae20866.png)
 
-20. When the "Finish" button becomes clickable again, click it:
+19. When the "Finish" button becomes clickable again, click it:
 
 ![image](https://user-images.githubusercontent.com/31490854/208678536-927dc74d-6b1e-428e-9594-ff0e838f15ac.png)
 
-21. Then, click "Open" when you see this window:
+20. Then, click "Open" when you see this window:
 
 ![image](https://user-images.githubusercontent.com/31490854/208678663-0486f63d-a4fc-4961-93d0-62a7c16a3e3b.png)
 
-22. Navigate to `C:\g\sm64ex-coop-android-base`, then click "OK":
+21. Navigate to `C:\g\sm64ex-coop-android-base`, then click "OK":
 
 ![image](https://user-images.githubusercontent.com/31490854/208699012-c05add71-4376-4792-82b1-c83787db96e1.png)
 
-23. Click "Trust Project" when you see this, then wait for the project to open:
+22. Click "Trust Project" when you see this, then wait for the project to open:
 
 ![image](https://user-images.githubusercontent.com/31490854/208679054-afa86c8d-d73d-43fe-a020-bcd75c1ad632.png)
 
-24. When you see the Windows Defender Firewall popup, click anything because you do not need to use ADB just to build - you can copy the `.apk` to your device over MTP later:
+23. When you see the Windows Defender Firewall popup, click anything because you do not need to use ADB just to build - you can copy the `.apk` to your device over MTP later:
 
 ![image](https://user-images.githubusercontent.com/31490854/208679495-a81d7e47-93f8-41ba-97c6-443ea707548b.png)
 
-25. Wait for this progress bar in the bottom right to stop loading. This will take a long time:
+24. Wait for this progress bar in the bottom right to stop loading. This will take a long time:
 
 ![image](https://user-images.githubusercontent.com/31490854/208679983-08702711-03ac-4062-8539-8ecce41dac10.png)
 
-26. When the progress bar disappears, the hammer icon in the top center will turn green. Click it, then wait for a progress bar in the same place as step 25 to finish loading again. This will take a long time:
+25. When the progress bar disappears, the hammer icon in the top center will turn green. Click it, then wait for a progress bar in the same place as step 25 to finish loading again. This will take a long time:
 
 ![image](https://user-images.githubusercontent.com/31490854/208681749-b6c34870-9aad-4450-9afd-15f2efecd53e.png)
 
-27. Open File Explorer and navigate to `C:\g\sm64ex-coop-android-base\app\build\outputs\apk\debug`. If the build was successful, the `app-debug.apk` will be here, and you can copy it to **_your_** Android device and install it there. **Do not share, remember the `.apk` contains assets! Treat it the same way you would a `sm64.us.f3dex2e.exe`!**
+26. Open File Explorer and navigate to `C:\g\sm64ex-coop-android-base\app\build\outputs\apk\debug`. If the build was successful, the `app-debug.apk` will be here, and you can copy it to **_your_** Android device and install it there. **Do not share, remember the `.apk` contains assets! Treat it the same way you would a `sm64.us.f3dex2e.exe`!**
 
 ![image](https://user-images.githubusercontent.com/31490854/208705298-f5e6888e-4d33-42af-acb4-9c217dd89992.png)
 
@@ -180,11 +174,6 @@ cd sm64ex-coop-android-base
 cp /path/to/your/baserom.us.z64 app/jni/src/baserom.us.z64
 ```
 
-**Create SDL2 include symlink:**
-```sh
-./getSDL.sh
-```
-
 **Perform native build:**
 ```sh
 cd app/jni/src
@@ -218,11 +207,6 @@ docker build . -t sm64_android
 **Copy in your `baserom.us.z64`:**
 ```sh
 cp /path/to/your/baserom.us.z64 app/jni/src/baserom.us.z64
-```
-
-**Create SDL2 include symlink:**
-```sh
-docker run --rm -v $(pwd):/sm64 sm64_android sh -c "./getSDL.sh"
 ```
 
 **Perform native build:**
