@@ -21,8 +21,10 @@ import android.hardware.Sensor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.Selection;
@@ -49,6 +51,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Hashtable;
 import java.util.Locale;
@@ -1775,10 +1779,45 @@ public class SDLActivity extends Activity implements View.OnSystemUiVisibilityCh
         }
 
         Activity activity = (Activity)getContext();
-        if (activity.checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
-            activity.requestPermissions(new String[]{permission}, requestCode);
+
+        if (permission.equals("android.permission.MANAGE_EXTERNAL_STORAGE")) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                if (Environment.isExternalStorageManager()) {
+                    nativePermissionResult(requestCode, true);
+                } else {
+                    //request for the permission
+                    try {
+                        Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+                        intent.addCategory("android.intent.category.DEFAULT");
+                        intent.setData(Uri.parse(String.format("package:%s",activity.getApplicationContext().getPackageName())));
+                        activity.startActivityForResult(intent, 2296);
+                    } catch (Exception e) {
+                        Intent intent = new Intent();
+                        intent.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                        activity.startActivityForResult(intent, 2296);
+                    }
+                }
+            }
         } else {
-            nativePermissionResult(requestCode, true);
+            if (activity.checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
+                activity.requestPermissions(new String[]{permission}, requestCode);
+            } else {
+                nativePermissionResult(requestCode, true);
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 2296) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                if (Environment.isExternalStorageManager()) {
+                    nativePermissionResult(requestCode, true);
+                } else {
+                    nativePermissionResult(requestCode, false);
+                }
+            }
         }
     }
 
