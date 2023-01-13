@@ -75,6 +75,9 @@ cd sm64ex-coop-android-base/app/jni/src
 ![image](https://user-images.githubusercontent.com/31490854/208706937-b2398bb5-c63f-4f71-9d1b-bc2809daa27c.png)
 
 12. Go back to the MSYS2 window and execute a native build using this command. This will take a long time:
+
+> If you get an error like `Error reading codebook`, just use `make clean` and keep trying again until it works, that only happens sometimes on Windows and I don't know what causes it
+
 ```sh
 HEADLESS=1 DISCORD_SDK=0 TOUCH_CONTROLS=1 make
 ```
