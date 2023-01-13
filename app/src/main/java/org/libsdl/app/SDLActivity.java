@@ -1797,6 +1797,8 @@ public class SDLActivity extends Activity implements View.OnSystemUiVisibilityCh
                         activity.startActivityForResult(intent, 2296);
                     }
                 }
+            } else {
+                nativePermissionResult(requestCode, false);
             }
         } else {
             if (activity.checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
