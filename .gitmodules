@@ -3,4 +3,4 @@
     url = https://github.com/robertkirkman/sm64ex-coop.git
 [submodule "app/jni/SDL"]
 	path = app/jni/SDL
-	url = https://github.com/libsdl-org/SDL.git
+	url = https://github.com/robertkirkman/SDL.git
