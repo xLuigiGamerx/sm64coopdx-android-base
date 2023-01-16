@@ -5,9 +5,9 @@ This is a port of the [`sm64ex-coop` multiplayer mod for Super Mario 64](https:/
 
 ## Android
 
-To compile only `libmain.so` (the minimum required) and use precompiled `libSDL2.so`, `classes.dex`, `.xml` files, and `resources.arsc`, follow the guide [here](https://github.com/robertkirkman/sm64ex-coop/blob/android/README_android.md)!
+To compile only `libmain.so` (the minimum required) and use precompiled `libSDL2.so`, `classes.dex`, `AndroidManifest.xml`, etc, follow the guide [here](https://github.com/robertkirkman/sm64ex-coop/blob/android/README_android.md)!
 
-To compile fully on Android, including Java and SDL2 components, follow the instructions in the above link up to and including step 22, then use [this](https://github.com/Lzhiyong/termux-ndk/tree/master/build-app) guide on this repository (untested, theoretically possible - I will check viability and write precise steps if successful)
+To compile fully on Android, including Java and SDL2 components, follow the instructions in the above link up to and including step 15, then use [this](https://github.com/Lzhiyong/termux-ndk/tree/master/build-app) guide on this repository (untested, theoretically possible - I will check viability and write precise steps if successful)
 
 ## Windows
 
