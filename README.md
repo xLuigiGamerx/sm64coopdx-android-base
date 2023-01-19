@@ -79,7 +79,7 @@ cd sm64ex-coop-android-base/app/jni/src
 > If you get an error like `Error reading codebook` or `You should specify a coefficient codebook`, just use `make clean` and keep trying again until it works, that only happens sometimes on Windows and I don't know what causes it
 
 ```sh
-HEADLESS=1 DISCORD_SDK=0 TOUCH_CONTROLS=1 make
+HEADLESS=1 TOUCH_CONTROLS=1 make
 ```
 
 13. Go to [the Android Studio website](https://developer.android.com/studio) and click "Download Android Studio":
@@ -180,7 +180,7 @@ cp /path/to/your/baserom.us.z64 app/jni/src/baserom.us.z64
 **Perform native build:**
 ```sh
 cd app/jni/src
-DISCORD_SDK=0 TOUCH_CONTROLS=1 make -j$(nproc)
+TOUCH_CONTROLS=1 make -j$(nproc)
 cd -
 ```
 
@@ -214,7 +214,7 @@ cp /path/to/your/baserom.us.z64 app/jni/src/baserom.us.z64
 
 **Perform native build:**
 ```sh
-docker run --rm -v $(pwd):/sm64 sm64_android sh -c "cd /sm64/app/jni/src && DISCORD_SDK=0 TOUCH_CONTROLS=1 make -j$(nproc)"
+docker run --rm -v $(pwd):/sm64 sm64_android sh -c "cd /sm64/app/jni/src && TOUCH_CONTROLS=1 make -j$(nproc)"
 ```
 
 **Perform Android build:**
