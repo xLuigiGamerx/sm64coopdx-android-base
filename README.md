@@ -79,7 +79,7 @@ cd sm64ex-coop-android-base/app/jni/src
 > If you get an error like `Error reading codebook` or `You should specify a coefficient codebook`, just use `make clean` and keep trying again until it works, that only happens sometimes on Windows and I don't know what causes it
 
 ```sh
-HEADLESS=1 TOUCH_CONTROLS=1 make
+HEADLESS=1 TOUCH_CONTROLS=1 TARGET_FOSS=0 make
 ```
 
 13. Go to [the Android Studio website](https://developer.android.com/studio) and click "Download Android Studio":
