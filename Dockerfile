@@ -6,6 +6,7 @@ RUN apt-get update && \
     sdkmanager \
     build-essential \
     bsdmainutils \
+    libreadline-dev \
     libglew-dev \
     libsdl2-dev
 
