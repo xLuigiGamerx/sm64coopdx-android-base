@@ -146,7 +146,7 @@ HEADLESS=1 TOUCH_CONTROLS=1 TARGET_FOSS=0 make
 
 **Install dependencies:**
 ```sh
-yay -S base-devel jdk17-openjdk android-sdk-cmdline-tools-latest android-sdk-build-tools android-sdk-platform-tools android-platform python sdl2 glew
+yay -S base-devel jdk17-openjdk android-sdk-cmdline-tools-latest android-sdk-build-tools android-sdk-platform-tools android-platform python sdl2 glew readline
 ```
 
 **Source `/etc/profile` to set `ANDROID_SDK_ROOT`:**
