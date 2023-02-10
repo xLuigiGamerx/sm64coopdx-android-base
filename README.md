@@ -7,7 +7,32 @@ This is a port of the [`sm64ex-coop` multiplayer mod for Super Mario 64](https:/
 
 To compile only `libmain.so` (the minimum required) and use precompiled `libSDL2.so`, `classes.dex`, `AndroidManifest.xml`, etc, follow the guide [here](https://github.com/robertkirkman/sm64ex-coop/blob/android/README_android.md)!
 
-To compile fully on Android, including Java and SDL2 components, follow the instructions in the above link up to and including step 15, then use [this](https://github.com/Lzhiyong/termux-ndk/tree/master/build-app) guide on this repository (untested, theoretically possible - I will check viability and write precise steps if successful)
+[The section below is for advanced users - beginners should choose one of the other build methods, like [minimal from Android](https://github.com/robertkirkman/sm64ex-coop/blob/android/README_android.md) or [full from Windows](#windows)]: 
+
+To compile fully on Android, including Java and SDL2 components, first follow the instructions [here](https://github.com/robertkirkman/sm64ex-coop/blob/android/README_android.md) up to and including step 16, then clone this repository and perform a partial build, whose binaries will not be used in your complete build, but which has the side effect of extracting the assets and generating some required source files from them, steps not currently called from the `gradle` + `ndk-build` build system:
+
+```
+git clone --recursive https://github.com/robertkirkman/sm64ex-coop-android-base.git
+cd sm64ex-coop-android-base/app/jni/src
+cp /storage/emulated/0/baserom.us.z64 .
+make -j$(nproc)
+```
+
+Then, use [this](https://github.com/Lzhiyong/termux-ndk/tree/master/build-app) guide on this repository. Tips:
+
+- Requires Android 9+
+
+- Ignore references to `cmake` in that guide, since this project uses `ndk-build` instead of `cmake`
+
+- Make sure to keep track of what files you extract to which places, and edit the paths in the configuration files and commands you copy from the guide to match where you placed the files
+
+- In addition to the "Replace the aapt2" step as described in that guide, I also have to replace another cached copy of `aapt2` with the same binary that had to be inserted into `aapt2-7.1.0-7984345-linux.jar`. Example:
+
+```
+cp ~/opt/aarch64/build-tools/aapt2 /data/data/com.termux/files/home/.gradle/caches/transforms-3/e2966ab490263982a29d42a1b79481d9/transformed/aapt2-7.1.0-7984345-linux/aapt2
+```
+
+- Use `gradle assembleDebug` instead of `gradle build`. Your `.apk` will be in `app/build/outputs/apk/debug/` when the full build completes.
 
 ## Windows
 
