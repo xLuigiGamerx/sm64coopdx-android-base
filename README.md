@@ -155,7 +155,7 @@ HEADLESS=1 TOUCH_CONTROLS=1 TARGET_FOSS=0 make
 
 ![image](https://user-images.githubusercontent.com/31490854/208679983-08702711-03ac-4062-8539-8ecce41dac10.png)
 
-25. When the progress bar disappears, the hammer icon in the top center will turn green. Click it, then wait for a progress bar in the same place as step 25 to finish loading again. This will take a long time:
+25. When the progress bar disappears, the hammer icon in the top center will turn green. Click it, then wait for a progress bar in the same place as step 24 to finish loading again. This will take a long time:
 
 ![image](https://user-images.githubusercontent.com/31490854/208681749-b6c34870-9aad-4450-9afd-15f2efecd53e.png)
 
