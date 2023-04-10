@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -54,6 +55,11 @@ import android.widget.Toast;
 
 import org.jetbrains.annotations.Nullable;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Hashtable;
 import java.util.Locale;
 
@@ -1827,6 +1833,75 @@ public class SDLActivity extends Activity implements View.OnSystemUiVisibilityCh
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         boolean result = (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED);
         nativePermissionResult(requestCode, result);
+    }
+
+    // https://stackoverflow.com/a/8366081/11708026
+    public static void copyAssetFilesToDir(String destpath) {
+        destpath = destpath + "/";
+        SDLActivity activity = (SDLActivity)getContext();
+        activity.copyFileOrDir("", destpath); // copy all files in assets folder in my project
+    }
+
+    public void copyFileOrDir(String srcpath, String destpath) {
+        AssetManager assetManager = this.getAssets();
+        String assets[] = null;
+        try {
+            Log.i("tag", "copyFileOrDir() "+ srcpath);
+            assets = assetManager.list(srcpath);
+            if (assets.length == 0) {
+                copyFile(srcpath, destpath);
+            } else {
+                String fullPath = destpath + srcpath;
+                Log.i("tag", "path="+fullPath);
+                File dir = new File(fullPath);
+                if (!dir.exists() && !srcpath.startsWith("images") && !srcpath.startsWith("sounds") && !srcpath.startsWith("webkit"))
+                    if (!dir.mkdirs())
+                        Log.i("tag", "could not create dir "+fullPath);
+                for (int i = 0; i < assets.length; ++i) {
+                    String p;
+                    if (srcpath.equals(""))
+                        p = "";
+                    else
+                        p = srcpath + "/";
+
+                    if (!srcpath.startsWith("images") && !srcpath.startsWith("sounds") && !srcpath.startsWith("webkit"))
+                        copyFileOrDir( p + assets[i], destpath);
+                }
+            }
+        } catch (IOException ex) {
+            Log.e("tag", "I/O Exception", ex);
+        }
+    }
+
+    public void copyFile(String filename, String destpath) {
+        AssetManager assetManager = this.getAssets();
+
+        InputStream in = null;
+        OutputStream out = null;
+        String newFileName = null;
+        try {
+            Log.i("tag", "copyFile() "+filename);
+            in = assetManager.open(filename);
+            if (filename.endsWith(".jpg")) // extension was added to avoid compression on APK file
+                newFileName = destpath + filename.substring(0, filename.length()-4);
+            else
+                newFileName = destpath + filename;
+            out = new FileOutputStream(newFileName);
+
+            byte[] buffer = new byte[1024];
+            int read;
+            while ((read = in.read(buffer)) != -1) {
+                out.write(buffer, 0, read);
+            }
+            in.close();
+            in = null;
+            out.flush();
+            out.close();
+            out = null;
+        } catch (Exception e) {
+            Log.e("tag", "Exception in copyFile() of "+newFileName);
+            Log.e("tag", "Exception in copyFile() "+e.toString());
+        }
     }
 
     /**
