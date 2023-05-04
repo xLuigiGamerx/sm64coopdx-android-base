@@ -1854,7 +1854,7 @@ public class SDLActivity extends Activity implements View.OnSystemUiVisibilityCh
                 String fullPath = destpath + srcpath;
                 Log.i("tag", "path="+fullPath);
                 File dir = new File(fullPath);
-                if (!dir.exists() && !srcpath.startsWith("images") && !srcpath.startsWith("sounds") && !srcpath.startsWith("webkit"))
+                if (!dir.exists())
                     if (!dir.mkdirs())
                         Log.i("tag", "could not create dir "+fullPath);
                 for (int i = 0; i < assets.length; ++i) {
@@ -1864,7 +1864,8 @@ public class SDLActivity extends Activity implements View.OnSystemUiVisibilityCh
                     else
                         p = srcpath + "/";
 
-                    if (!srcpath.startsWith("images") && !srcpath.startsWith("sounds") && !srcpath.startsWith("webkit"))
+                    if (assets[i].equals("lang") || assets[i].equals("mods") ||
+                        srcpath.contains("lang") || srcpath.contains("mods"))
                         copyFileOrDir( p + assets[i], destpath);
                 }
             }
