@@ -62,7 +62,7 @@ android {
     lintOptions {
         abortOnError false
     }
-
+    
     if (buildAsLibrary) {
         libraryVariants.all { variant ->
             variant.outputs.each { output ->
