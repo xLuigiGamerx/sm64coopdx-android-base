@@ -1,4 +1,4 @@
-package com.owokitty.sm64excoop;
+package com.maniscat2.sm64coopdx;
 
 import android.app.AlertDialog;
 import android.text.InputType;
@@ -13,7 +13,7 @@ import org.libsdl.app.SDLActivity;
 
 import java.util.Objects;
 
-public class sm64excoopActivity extends SDLActivity
+public class sm64coopdxActivity extends SDLActivity
 {
 
 }
