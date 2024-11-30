@@ -5,7 +5,7 @@ git submodule update --remote app/jni/src
 
 # Ensure it's on the correct CoopDX branch
 cd app/jni/src
-git pull
+git fetch
 cd ../../..
 
 # Commit and push the updates to the main repository
