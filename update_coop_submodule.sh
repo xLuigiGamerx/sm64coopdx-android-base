@@ -5,7 +5,7 @@ git submodule update --remote app/jni/src
 
 # Ensure it's on the correct CoopDX branch
 cd app/jni/src
-git fetch
+git fetch && git merge origin/$(git symbolic-ref HEAD modules/app/jni/refs/heads/android)
 cd ../../..
 
 # Commit and push the updates to the main repository
