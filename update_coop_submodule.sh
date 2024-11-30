@@ -3,10 +3,8 @@
 # Fetch and update all submodules to the latest commit on their respective branches
 git submodule update --remote app/jni/src
 
-# Ensure it's on the correct CoopDX branch
-cd app/jni/src
-git fetch && git merge origin/$(git symbolic-ref HEAD modules/app/jni/refs/heads/android)
-cd ../../..
+# Iterate over each submodule and ensure it's on the correct branch
+git submodule foreach 'git fetch && git merge origin/$(git symbolic-ref --short HEAD)'
 
 # Commit and push the updates to the main repository
 git add .
