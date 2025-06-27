@@ -23,7 +23,7 @@ pacman -S --noconfirm unzip make git mingw-w64-x86_64-gcc python3
 cd /c
 mkdir g
 cd g
-git clone --recursive https://github.com/robertkirkman/sm64ex-coop-android-base.git
+git clone --recursive https://github.com/xLuigiGamerx/sm64coopdx-android-base.git
 cd sm64ex-coop-android-base/app/jni/src
 ```
 
