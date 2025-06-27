@@ -1857,6 +1857,7 @@ public class SDLActivity extends Activity implements View.OnSystemUiVisibilityCh
                 copyFile(srcpath, destpath);
             } else {
                 String fullPath = destpath + srcpath;
+                String[] copiedFolders = {"lang", "mods", "dynos", "palettes"};
                 Log.i("tag", "path="+fullPath);
                 File dir = new File(fullPath);
                 if (!dir.exists())
@@ -1869,9 +1870,20 @@ public class SDLActivity extends Activity implements View.OnSystemUiVisibilityCh
                     else
                         p = srcpath + "/";
 
-                    if (assets[i].equals("lang") || assets[i].equals("mods") ||
-                        srcpath.contains("lang") || srcpath.contains("mods"))
-                        copyFileOrDir( p + assets[i], destpath);
+                    String name = assets[i];
+
+                    boolean shouldCopy = false;
+                    for (String folder : copiedFolders) {
+                        if (name.equals(folder) || srcpath.contains(folder)) {
+                            shouldCopy = true;
+                            break;
+                        }
+                    }
+
+                    File destFolder = new File(destpath, name);
+                    if (shouldCopy && !destFolder.exists()) {
+                        copyFileOrDir(p + name, destpath);
+                    }
                 }
             }
         } catch (IOException ex) {

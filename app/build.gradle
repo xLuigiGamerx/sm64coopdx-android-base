@@ -13,7 +13,7 @@ android {
         if (buildAsApplication) {
             applicationId "com.maniscat2.sm64coopdx"
         }
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion 33
         versionCode 1
         versionName "1.0"
@@ -25,7 +25,7 @@ android {
         externalNativeBuild {
             ndkBuild {
                 arguments "-j9"
-                abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+                abiFilters 'arm64-v8a'
             }
             // cmake {
             //     arguments "-DANDROID_APP_PLATFORM=android-16", "-DANDROID_STL=c++_static"

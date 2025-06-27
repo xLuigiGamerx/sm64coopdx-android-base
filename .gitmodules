@@ -1,6 +1,4 @@
 [submodule "app/jni/src"]
 	path = app/jni/src
     url = https://github.com/ManIsCat2/sm64coopdx.git
-[submodule "app/jni/SDL"]
-	path = app/jni/SDL
-	url = https://github.com/robertkirkman/SDL.git
+	branch = android-dev
